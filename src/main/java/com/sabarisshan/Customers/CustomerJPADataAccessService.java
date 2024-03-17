@@ -1,6 +1,5 @@
 package com.sabarisshan.Customers;
 
-import com.sabarisshan.Exception.ResourceNotFoundException;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,7 +20,7 @@ public class CustomerJPADataAccessService implements CustomerDAO{
 
     @Override
     public Optional<Customer> getCustomerById(Integer id) {
-        return Optional.empty();
+        return customerRepository.findById(id);
     }
 
     @Override
@@ -43,4 +42,13 @@ public class CustomerJPADataAccessService implements CustomerDAO{
     public boolean existCustomerWithID(Integer id) {
         return customerRepository.existsCustomerById(id);
     }
+
+    @Override
+    public void updateCustomer(Customer update) {
+        customerRepository.save(update);
+    }
+
+
+
+
 }
