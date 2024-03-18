@@ -5,18 +5,21 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Table(
+        name = "customer",
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        name = "customer_Email_Unique",
+                        columnNames = "email"
+                )
+        }
+)
 public class Customer {
 
     @Id
-    @SequenceGenerator(
-            name = "customer_id_sequence",
-            sequenceName = "customer_id_sequence"
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "customer_id_sequence"
-    )
-    private int id;
+    @SequenceGenerator(name = "customer_id_seq", sequenceName = "customer_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_id_seq")
+    private Integer id;
 
     @Column(
             nullable = false
@@ -26,7 +29,7 @@ public class Customer {
     @Column(
             nullable = false
     )
-    private int age;
+    private Integer age;
 
     @Column(nullable = false)
     private  String email;

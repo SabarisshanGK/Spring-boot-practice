@@ -15,7 +15,7 @@ public class CustomerService {
     private final CustomerDAO customerDao;
 
 
-    public CustomerService(@Qualifier("JPA") CustomerDAO customerDao){
+    public CustomerService(@Qualifier("JDBC") CustomerDAO customerDao){
         this.customerDao = customerDao;
     }
 
